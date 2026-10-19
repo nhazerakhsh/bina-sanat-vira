@@ -165,7 +165,9 @@
 
 <!-- Scrollable carousel area -->
 <section bind:this={section} {dir} class="relative bg-surface" style="height:{n * 80}vh">
-	<div class="sticky top-16 flex h-[calc(80vh-4rem)] items-center justify-center">
+	<div
+		class="sticky top-16 flex h-[calc(80vh-4rem)] items-center justify-center md:top-24 md:h-[calc(80vh-6rem)]"
+	>
 		<div
 			class="grid h-full w-full max-w-6xl grid-rows-[3fr_2fr] gap-2 md:grid-cols-2 md:grid-rows-1 md:gap-24"
 		>

@@ -1,14 +1,11 @@
 <script lang="ts">
-	import { ArrowRight, Check, ServerCog } from '@lucide/svelte';
+	import { ArrowRight, Check } from '@lucide/svelte';
 	import { m } from '#lib/paraglide/messages.js';
 	import Button from '#lib/components/ui/button.svelte';
 	import Reveal from '#lib/components/ui/reveal.svelte';
 	import SectionHeading from '#lib/components/ui/section-heading.svelte';
-	import Visual from '#lib/components/ui/visual.svelte';
+	import VideoIntro from '#lib/components/ui/video-intro.svelte';
 	import { getTextDirection } from '#lib/paraglide/runtime.js';
-
-	/** Replace with a real photo, e.g. "/images/why-us.jpg". */
-	const whyImage: string | undefined = undefined;
 
 	const dir = $derived(getTextDirection());
 
@@ -54,11 +51,9 @@
 		</div>
 		<!-- enters from the inner (centre) side so the offset never overflows the viewport -->
 		<Reveal delay={150} x={dir === 'rtl' ? 40 : -40} scale={0.96} duration={800}>
-			<Visual
-				src={whyImage}
-				icon={ServerCog}
-				tone="dark"
-				alt={m.why_title()}
+			<VideoIntro
+				src="/intro/intro.mp4"
+				label={m.why_intro_play()}
 				class="aspect-[16/10] rounded-2xl shadow-card"
 			/>
 		</Reveal>

@@ -1,0 +1,76 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+@import '@fontsource-variable/vazirmatn';
+@import '@fontsource-variable/inter';
+
+@theme {
+	--font-sans: 'Vazirmatn Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+	--color-brand-50: #eef6ff;
+	--color-brand-100: #d9eaff;
+	--color-brand-200: #bcdaff;
+	--color-brand-300: #8ec2ff;
+	--color-brand-400: #59a0ff;
+	--color-brand-500: #1d7bff;
+	--color-brand-600: #0b63f0;
+	--color-brand-700: #0a4fcc;
+	--color-brand-800: #0e44a3;
+	--color-brand-900: #12397f;
+
+	--color-navy-700: #12326b;
+	--color-navy-800: #0b2554;
+	--color-navy-900: #071a3d;
+	--color-navy-950: #04122b;
+
+	--color-surface: #f5f9ff;
+
+	--shadow-card: 0 1px 2px rgb(7 26 61 / 0.05), 0 8px 24px -12px rgb(7 26 61 / 0.18);
+	--shadow-card-hover: 0 2px 4px rgb(7 26 61 / 0.06), 0 18px 36px -14px rgb(11 99 240 / 0.35);
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+		scroll-padding-top: 5rem;
+	}
+
+	html:lang(en) {
+		--font-sans: 'Inter Variable', 'Vazirmatn Variable', ui-sans-serif, system-ui, sans-serif;
+	}
+
+	body {
+		@apply bg-white font-sans text-slate-600 antialiased;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+}
+
+@utility container-x {
+	@apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@utility scrollbar-none {
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/*
+	Brand wordmark marquee. Pure CSS (no JS) so it can never cause a
+	hydration mismatch: the track holds two identical halves and slides
+	by exactly half its width (-50%), which is one full period of the
+	repeated pattern.
+*/
+@keyframes brand-marquee {
+	from {
+		transform: translateX(-50%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}

@@ -3,6 +3,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import SocialIcon from '#lib/components/ui/social-icon.svelte';
 	import Logo from './logo.svelte';
+	import FooterGearCluster from '#lib/components/gears/footer-gear-cluster.svelte';
 
 	const links = $derived([
 		{ href: '#home', label: m.nav_home() },
@@ -31,7 +32,18 @@
 
 <!-- Hash, external and locale-switch links are intentionally not passed through resolve(). -->
 <!-- eslint-disable svelte/no-navigation-without-resolve -->
-<footer id="contact" class="bg-navy-900 text-slate-300">
+<footer id="contact" class="relative isolate overflow-hidden bg-navy-900 text-slate-300">
+	<!-- Terminal Gear Cluster connecting from the page stream -->
+	<FooterGearCluster
+		class="pointer-events-none absolute inset-y-0 end-0 -z-10 h-full w-full max-w-xl opacity-30 lg:opacity-75"
+	/>
+
+	<!-- Subtle blueprint gradient fade -->
+	<div
+		aria-hidden="true"
+		class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-navy-900 via-navy-900/90 to-transparent rtl:bg-gradient-to-l"
+	></div>
+
 	<div class="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
 		<div>
 			<Logo tone="dark" />

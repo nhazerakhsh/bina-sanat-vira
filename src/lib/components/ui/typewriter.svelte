@@ -32,19 +32,26 @@
 		tween = t;
 
 		let timer: ReturnType<typeof setTimeout> | undefined;
+		// Fallback starts typing if observer is delayed or in headless mode
+		const fallbackTimer = setTimeout(() => {
+			t.target = len;
+		}, delay + 100);
+
 		const io = new IntersectionObserver(
 			(entries) => {
 				if (!entries.some((entry) => entry.isIntersecting)) return;
+				clearTimeout(fallbackTimer);
 				io.disconnect();
 				timer = setTimeout(() => {
 					t.target = len;
 				}, delay);
 			},
-			{ threshold: 0.4 }
+			{ threshold: 0.1 }
 		);
 		io.observe(el);
 
 		return () => {
+			clearTimeout(fallbackTimer);
 			io.disconnect();
 			if (timer !== undefined) clearTimeout(timer);
 			// park the orphaned tween at its current value

@@ -7,6 +7,7 @@
 	import SectionHeading from '#lib/components/ui/section-heading.svelte';
 	import Spin from '#lib/components/ui/spin.svelte';
 	import Visual from '#lib/components/ui/visual.svelte';
+	import GearSvg from '#lib/components/gears/gear-svg.svelte';
 	import { getTextDirection } from '#lib/paraglide/runtime.js';
 
 	/** Replace with a real photo, e.g. "/images/about.jpg". */
@@ -58,17 +59,34 @@
 
 		<div class="relative mt-12">
 			<!-- counter-rotating gear decorations -->
-			<div aria-hidden="true" class="pointer-events-none absolute -end-6 -top-7 hidden lg:block">
-				<Spin duration={11000} continuous class="text-brand-300">
-					<Cog class="size-14" strokeWidth={1.25} />
+			<div
+				aria-hidden="true"
+				class="pointer-events-none absolute -end-6 -top-8 hidden opacity-75 lg:block"
+			>
+				<Spin duration={12000} continuous>
+					<GearSvg
+						teeth={20}
+						radius={28}
+						theme="blueprint"
+						spokeStyle="circles"
+						spokeCount={5}
+						glow={false}
+					/>
 				</Spin>
 			</div>
 			<div
 				aria-hidden="true"
-				class="pointer-events-none absolute -start-5 -bottom-6 hidden lg:block"
+				class="pointer-events-none absolute -start-6 -bottom-7 hidden opacity-85 lg:block"
 			>
-				<Spin duration={7000} turns={-1} continuous class="text-brand-400/70">
-					<Settings class="size-9" strokeWidth={1.5} />
+				<Spin duration={8000} turns={-1} continuous>
+					<GearSvg
+						teeth={14}
+						radius={20}
+						theme="gold"
+						spokeStyle="spokes"
+						spokeCount={4}
+						glow={false}
+					/>
 				</Spin>
 			</div>
 

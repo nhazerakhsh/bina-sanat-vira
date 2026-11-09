@@ -96,7 +96,7 @@
 			<Button
 				variant="ghost"
 				size="icon"
-				class="bg-brand-50 text-brand-700"
+				class="hidden bg-brand-50 text-brand-700 sm:inline-flex"
 				aria-label={m.nav_search()}
 				aria-expanded={searchOpen}
 				onclick={toggleSearch}
@@ -106,7 +106,7 @@
 			<Button
 				variant="ghost"
 				size="icon"
-				class="bg-brand-50 text-brand-700 lg:hidden"
+				class="text-navy-900 hover:bg-slate-100 lg:hidden"
 				aria-label={menuOpen ? m.nav_close_menu() : m.nav_open_menu()}
 				aria-expanded={menuOpen}
 				onclick={() => {
@@ -114,7 +114,7 @@
 					searchOpen = false;
 				}}
 			>
-				{#if menuOpen}<X class="size-5" />{:else}<Menu class="size-5" />{/if}
+				{#if menuOpen}<X class="size-6" />{:else}<Menu class="size-6" />{/if}
 			</Button>
 		</div>
 	</div>

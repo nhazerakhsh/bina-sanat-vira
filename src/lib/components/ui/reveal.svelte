@@ -61,10 +61,21 @@
 		mounted = true;
 		if (reduce || !el) return;
 
+		if (delay === 0) {
+			void tween.set(1, { duration: 0 });
+			return;
+		}
+
+		// Fallback timer ensures visibility even if IntersectionObserver is delayed or in headless mode
+		const fallbackTimer = setTimeout(() => {
+			void tween.set(1, { duration });
+		}, delay + 100);
+
 		const io = new IntersectionObserver(
 			(entries) => {
 				for (const entry of entries) {
 					if (entry.isIntersecting) {
+						clearTimeout(fallbackTimer);
 						void tween.set(1, { delay, duration });
 						if (once) io.disconnect();
 					} else if (!once) {
@@ -76,7 +87,10 @@
 			{ rootMargin: '0px 0px -60px 0px' }
 		);
 		io.observe(el);
-		return () => io.disconnect();
+		return () => {
+			clearTimeout(fallbackTimer);
+			io.disconnect();
+		};
 	});
 </script>
 
